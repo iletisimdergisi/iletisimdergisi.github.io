@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İletişim Dergisi — Sözle başlar, ruhla yankılanır.</title>
+  <meta name="description" content="Çankaya Üniversitesinin farklı bölümlerinden öğrencilerin sözlerini, fikirlerini ve hikâyelerini buluşturan İletişim Dergisi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101010'/%3E%3Ccircle cx='48' cy='16' r='7' fill='%23f2d20c'/%3E%3Ctext x='10' y='47' font-family='serif' font-size='42' fill='white'%3EI%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --paper: #f4f1e9;
+      --ink: #11110f;
+      --muted: #6d6b63;
+      --yellow: #f2d20c;
+      --red: #a31e23;
+      --line: rgba(17,17,15,.22);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .page { width: min(1440px, 100%); margin: 0 auto; overflow: hidden; }
+    .eyebrow { margin: 0; font-size: .76rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .75rem 1.1rem; border: 1px solid var(--ink); font-weight: 600; transition: .2s ease; }
+    .button:hover, .button:focus-visible { background: var(--ink); color: var(--paper); }
+    .button--yellow { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
+    .button--yellow:hover, .button--yellow:focus-visible { background: var(--ink); border-color: var(--ink); color: white; }
+    .button--dark { background: var(--ink); color: white; }
+    .button--dark:hover, .button--dark:focus-visible { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
+
+    header { position: relative; z-index: 5; border-bottom: 1px solid var(--line); background: rgba(244,241,233,.96); }
+    .topline { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .55rem clamp(1.2rem,4vw,4rem); border-bottom: 1px solid var(--line); color: var(--muted); font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; }
+    .navrow { min-height: 82px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; padding: 0 clamp(1.2rem,4vw,4rem); }
+    .brand { font-family: var(--serif); font-size: clamp(1.7rem,3vw,2.7rem); letter-spacing: -.05em; }
+    .brand .red { color: var(--red); font-style: italic; }
+    nav { display: flex; justify-content: center; gap: clamp(.7rem,1.5vw,1.5rem); font-size: .82rem; }
+    nav a { border-bottom: 1px solid transparent; padding: .4rem 0; }
+    nav a:hover { border-color: var(--ink); }
+    .menu-button { display: none; border: 0; background: transparent; font: inherit; font-weight: 600; }
+
+    .hero { min-height: 720px; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(330px,.8fr); border-bottom: 1px solid var(--ink); }
+    .hero-copy { position: relative; min-width: 0; padding: clamp(2.5rem,6vw,6.5rem) clamp(1.2rem,5vw,5rem) 3rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .issue-mark { position: absolute; right: 2rem; top: 2rem; width: 4rem; height: 4rem; border-radius: 50%; display: grid; place-items: center; background: var(--yellow); font-weight: 600; font-size: .74rem; }
+    .masthead { margin: .6rem 0 1rem; font-family: var(--serif); font-size: clamp(5rem,13vw,12rem); font-weight: 500; letter-spacing: -.075em; line-height: .82; }
+    .masthead .red { color: var(--red); font-style: italic; }
+    .motto { position: relative; margin: 0; font-family: var(--serif); font-size: clamp(1.7rem,3.2vw,3.5rem); line-height: 1.05; max-width: 720px; }
+    .motto::after { content: "ruhla yankılanır"; position: absolute; left: 1.15rem; top: 100%; color: transparent; -webkit-text-stroke: 1px rgba(17,17,15,.13); opacity: .7; white-space: nowrap; pointer-events: none; }
+    .hero-bottom { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 2rem; align-items: end; margin-top: 8rem; }
+    .intro { margin: 0; max-width: 590px; font-size: clamp(1.05rem,1.4vw,1.25rem); }
+    .intro strong { box-shadow: inset 0 -.45em var(--yellow); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .hero-cover { position: relative; min-height: 720px; background: #111; overflow: hidden; }
+    .hero-cover img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.8) contrast(1.03); transition: transform .8s ease; }
+    .hero-cover:hover img { transform: scale(1.018); }
+    .cover-label { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.4rem; display: flex; justify-content: space-between; gap: 1rem; align-items: end; padding: 1rem; background: rgba(17,17,15,.9); color: white; }
+    .cover-label strong { display: block; font-family: var(--serif); font-size: 1.25rem; }
+    .cover-label span { color: var(--yellow); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+
+    .manifesto { padding: clamp(4rem,8vw,8rem) clamp(1.2rem,5vw,5rem); display: grid; grid-template-columns: .45fr 1.55fr; gap: 3rem; border-bottom: 1px solid var(--line); }
+    .manifesto blockquote { margin: 0; font-family: var(--serif); font-size: clamp(2.4rem,5.2vw,6rem); letter-spacing: -.04em; line-height: 1.03; }
+    .manifesto blockquote em { color: var(--red); font-weight: 500; }
+    .manifesto-note { max-width: 700px; margin-top: 2.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .manifesto-note p { margin: 0; }
+
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--ink); }
+    .section-head h2 { margin: 0; font-family: var(--serif); font-size: clamp(3rem,7vw,7rem); font-weight: 500; letter-spacing: -.06em; line-height: .85; }
+    .section-head p { max-width: 420px; margin: 0; }
+    .latest { padding: clamp(4rem,7vw,7rem) clamp(1.2rem,5vw,5rem); background: #e7e3d9; }
+    .latest-grid { margin-top: 2.5rem; display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(2rem,6vw,6rem); }
+    .latest-cover { position: relative; }
+    .latest-cover img { box-shadow: 18px 22px 0 var(--yellow); }
+    .latest-cover::before { content: "02"; position: absolute; z-index: 2; right: -1.2rem; top: -2.2rem; font-family: var(--serif); font-size: 8rem; line-height: 1; color: var(--red); }
+    .latest-copy { display: flex; flex-direction: column; justify-content: space-between; padding: 1rem 0; }
+    .latest-copy h3 { margin: 0; font-family: var(--serif); font-size: clamp(2.5rem,5vw,5.2rem); line-height: .95; font-weight: 500; }
+    .latest-copy .lead { max-width: 650px; font-size: 1.12rem; }
+    .articles { border-top: 1px solid var(--line); margin-top: 3rem; }
+    .article { display: grid; grid-template-columns: 3rem 1fr auto; gap: 1rem; padding: 1.15rem 0; border-bottom: 1px solid var(--line); align-items: center; }
+    .article b { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; }
+    .article small { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+
+    .sections { padding: clamp(4rem,7vw,7rem) clamp(1.2rem,5vw,5rem); }
+    .section-list { margin-top: 3rem; border-top: 1px solid var(--ink); }
+    .section-item { display: grid; grid-template-columns: 5rem .8fr 1.2fr auto; gap: 2rem; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--line); }
+    .section-item .num { font-family: var(--serif); font-size: 2.4rem; color: var(--red); }
+    .section-item h3 { margin: 0; font-family: var(--serif); font-size: clamp(1.8rem,3vw,3.3rem); font-weight: 500; line-height: 1; }
+    .section-item p { margin: 0; max-width: 580px; color: #4a4944; }
+    .arrow { width: 45px; height: 45px; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font-size: 1.2rem; }
+
+    .archive { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+    .archive-intro { padding: clamp(3rem,6vw,6rem) clamp(1.2rem,5vw,5rem); background: var(--ink); color: white; display: flex; flex-direction: column; justify-content: space-between; }
+    .archive-intro h2 { margin: 1rem 0; font-family: var(--serif); font-size: clamp(3.2rem,7vw,7rem); font-weight: 500; letter-spacing: -.06em; line-height: .9; }
+    .archive-intro p { max-width: 480px; }
+    .covers { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: clamp(2rem,5vw,5rem); align-items: end; }
+    .cover-card:nth-child(2) { transform: translateY(-2rem); }
+    .cover-card img { border: 1px solid var(--ink); }
+    .cover-meta { display: flex; justify-content: space-between; gap: .5rem; margin-top: .8rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+
+    .join { position: relative; padding: clamp(5rem,10vw,10rem) clamp(1.2rem,5vw,5rem); background: var(--yellow); overflow: hidden; }
+    .join::after { content: "YANKI"; position: absolute; right: -1rem; bottom: -4rem; font-family: var(--serif); font-size: clamp(9rem,24vw,25rem); line-height: .75; color: rgba(17,17,15,.07); pointer-events: none; }
+    .join-content { position: relative; z-index: 1; max-width: 950px; }
+    .join h2 { margin: 1rem 0 2rem; font-family: var(--serif); font-size: clamp(3.2rem,7.8vw,8rem); font-weight: 500; letter-spacing: -.06em; line-height: .92; }
+    .join p { max-width: 700px; font-size: 1.15rem; }
+    .join .button { margin-top: 1rem; }
+
+    footer { background: var(--ink); color: white; padding: 3rem clamp(1.2rem,5vw,5rem); }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; }
+    .footer-brand { font-family: var(--serif); font-size: 2.8rem; letter-spacing: -.05em; }
+    footer p { color: #b9b7ae; margin: .5rem 0; }
+    .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 1rem; font-size: .88rem; }
+    .copyright { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.2); color: #9b9991; font-size: .75rem; }
+
+    @media (max-width: 980px) {
+      .navrow { grid-template-columns: 1fr auto; }
+      nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; padding: 1.5rem; background: var(--paper); border-bottom: 1px solid var(--ink); }
+      nav.open { display: flex; }
+      .menu-button { display: block; }
+      .navrow > .button { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 610px; }
+      .hero-cover { min-height: 620px; }
+      .manifesto { grid-template-columns: 1fr; }
+      .latest-grid { grid-template-columns: .8fr 1.2fr; }
+      .section-item { grid-template-columns: 3rem 1fr auto; }
+      .section-item p { grid-column: 2 / 4; }
+      .archive { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .topline span:last-child { display: none; }
+      .navrow { min-height: 68px; }
+      .hero { min-height: auto; }
+      .hero-copy { min-height: 560px; padding-top: 3rem; }
+      .issue-mark { width: 3.2rem; height: 3.2rem; right: 1rem; top: 1rem; }
+      .masthead { font-size: clamp(4.1rem,22vw,7rem); }
+      .motto::after { white-space: normal; }
+      .hero-bottom { grid-template-columns: 1fr; margin-top: 6rem; }
+      .hero-cover { min-height: 570px; }
+      .manifesto-note { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+      .latest-grid { grid-template-columns: 1fr; }
+      .latest-cover { width: 82%; }
+      .latest-cover::before { right: -2.5rem; font-size: 6rem; }
+      .article { grid-template-columns: 2rem 1fr; }
+      .article small { grid-column: 2; }
+      .section-item { grid-template-columns: 2.3rem 1fr auto; gap: 1rem; }
+      .covers { gap: 1rem; }
+      .cover-card:nth-child(2) { transform: translateY(-1rem); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .copyright { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="topline"><span>Çankaya Üniversitesi · İletişim Topluluğu</span><span>Öğrenci yayını · 2024’ten beri</span></div>
+      <div class="navrow">
+        <a class="brand" href="#ana" aria-label="İletişim ana sayfa">İLET<span class="red">“İŞ”</span>İM</a>
+        <nav id="site-nav" aria-label="Ana menü">
+          <a href="son-sayi.html">Son Sayı</a><a href="sayilar.html">Sayılar</a><a href="yazilar.html">Yazılar</a><a href="koseler.html">Köşeler</a><a href="yazar-ol.html">Yazar Ol</a><a href="hakkimizda.html">Hakkımızda</a>
+        </nav>
+        <a class="button button--yellow" href="yazar-ol.html">Yazar Ol</a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="ana">
+        <div class="hero-copy">
+          <div>
+            <p class="eyebrow">Bağımsız öğrenci sesi · Sayı 02</p>
+            <div class="masthead" aria-label="İletişim">İLET<span class="red">“İŞ”</span>İM</div>
+            <p class="motto">Sözle başlar,<br>ruhla yankılanır.</p>
+          </div>
+          <div class="hero-bottom">
+            <p class="intro">Çankaya Üniversitesinin farklı bölümlerinden öğrencilerin fikirlerini, gözlemlerini ve hikâyelerini buluşturan dergi. <strong>Bölümün ne olursa olsun, burada senin sözüne de yer var.</strong></p>
+            <div class="hero-actions"><a class="button button--dark" href="https://online.flippingbook.com/view/491399706/" target="_blank" rel="noreferrer">Son Sayıyı Oku ↗</a><a class="button" href="yazar-ol.html">Yazar Ol</a></div>
+          </div>
+          <div class="issue-mark">02<br>2026</div>
+        </div>
+        <a class="hero-cover" href="https://online.flippingbook.com/view/491399706/" target="_blank" rel="noreferrer" aria-label="Bahar 2026 ikinci sayıyı oku">
+          <img src="assets/sayi-02-kapak.png" alt="İletişim Dergisi Bahar 2026 Sayı 2 kapağı, Betül Mardin">
+          <div class="cover-label"><div><span>Son sayı</span><strong>Bahar 2026</strong></div><div>Okumaya başla ↗</div></div>
+        </a>
+      </section>
+
+      <section class="manifesto" id="hakkimizda">
+        <p class="eyebrow">Yayın sözümüz / 01</p>
+        <div>
+          <blockquote>Bir öğrencinin <em>sözüyle</em> başlar. Üniversitenin ortak hafızasında <em>yankılanır.</em></blockquote>
+          <div class="manifesto-note"><p>İletişim, Halkla İlişkiler ve Reklamcılık Bölümüne bağlı İletişim Topluluğu çatısı altında, kendi yayın ve editoryal komitesiyle hazırlanır.</p><p>Yayın, Çankaya Üniversitesinin bütün fakülte ve bölümlerinden öğrencilerin özgün fikirlerine, araştırmalarına ve yaratıcı çalışmalarına açıktır.</p></div>
+        </div>
+      </section>
+
+      <section class="latest" id="son-sayi">
+        <div class="section-head"><h2>Son sayı</h2><p>İletişim, reklam, medya, kampüs yaşamı, kültür ve öğrenci deneyimleri tek bir sayıda, farklı seslerle buluşuyor.</p></div>
+        <div class="latest-grid">
+          <a class="latest-cover" href="https://online.flippingbook.com/view/491399706/" target="_blank" rel="noreferrer"><img src="assets/sayi-02-kapak.png" alt="İletişim Dergisi ikinci sayı kapağı"></a>
+          <div class="latest-copy">
+            <div><p class="eyebrow">Bahar 2026 · Kapaktaki Kadın</p><h3>Bir mesleğin doğuşu: Betül Mardin ve Türkiye’de PR devrimi</h3><p class="lead">Türkiye’de iletişim tarihinden güncel yapay zekâ tartışmalarına; Çankaya’dan yükselen öğrenci projelerinden kültür ve sanat yazılarına uzanan zengin bir yankı.</p></div>
+            <div class="articles" id="yazilar">
+              <div class="article"><span>01</span><b>İletişim ve Fikir Emperyalizmi</b><small>PR & AD</small></div>
+              <div class="article"><span>02</span><b>Bir Sihirbazın Şapkasından Fatura Çıkarma Hikâyesi</b><small>PR & AD</small></div>
+              <div class="article"><span>03</span><b>Gerçek İnsan Bitti mi? AI Influencer’lar</b><small>Yaşam</small></div>
+            </div>
+            <div class="hero-actions"><a class="button button--dark" href="https://online.flippingbook.com/view/491399706/" target="_blank" rel="noreferrer">Dergiyi Oku ↗</a><a class="button" href="sayilar.html">Tüm Sayılar</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sections" id="koseler">
+        <div class="section-head"><h2>Sözün nerede<br>yankılanacak?</h2><p>Bir kampanya analizi, kampüsten bir haber, kültür-sanat yazısı ya da unutulmayan bir anı… Fikrine en uygun köşeyi bul.</p></div>
+        <div class="section-list">
+          <div class="section-item"><span class="num">01</span><h3>PR & AD</h3><p>İletişim, reklam, marka, medya ve sektör üzerine araştırma, değerlendirme ve eleştiri yazıları.</p><span class="arrow">↗</span></div>
+          <div class="section-item"><span class="num">02</span><h3>Çankaya’dan Haberler</h3><p>Kampüsteki etkinlikleri, toplulukları, projeleri ve öğrenci başarılarını görünür kılan haberler.</p><span class="arrow">↗</span></div>
+          <div class="section-item"><span class="num">03</span><h3>Yaşam Köşesi</h3><p>Kültür, sanat, edebiyat, sinema, müzik, moda, spor, teknoloji ve gündelik yaşama dair özgün içerikler.</p><span class="arrow">↗</span></div>
+          <div class="section-item"><span class="num">04</span><h3>Anı Kapsülü</h3><p>Öğrenci anılarını, mezun hikâyelerini ve Çankaya Üniversitesinin ortak hafızasını geleceğe taşıyan bölüm.</p><span class="arrow">↗</span></div>
+        </div>
+      </section>
+
+      <section class="archive" id="sayilar">
+        <div class="archive-intro"><div><p class="eyebrow">Arşiv / 2025—2026</p><h2>İki sayı.<br>Tek bir yankı.</h2></div><p>İletişim’in yayın yolculuğunu keşfet. Her kapak, iletişim tarihinden bir ismi; her sayı, Çankaya’dan yeni sesleri bir araya getiriyor.</p></div>
+        <div class="covers">
+          <a class="cover-card" href="https://online.flippingbook.com/view/491399706/" target="_blank" rel="noreferrer"><img src="assets/sayi-02-kapak.png" alt="İletişim Dergisi Sayı 2"><div class="cover-meta"><span>Sayı 02</span><span>Bahar 2026 ↗</span></div></a>
+          <a class="cover-card" href="https://online.flippingbook.com/view/491366137/" target="_blank" rel="noreferrer"><img src="assets/sayi-01-kapak.png" alt="İletişim Dergisi Sayı 1"><div class="cover-meta"><span>Sayı 01</span><span>Ocak 2025 ↗</span></div></a>
+        </div>
+      </section>
+
+      <section class="join" id="yazar-ol">
+        <div class="join-content"><p class="eyebrow">Gelecek sayıya katıl</p><h2>Bir sözün varsa,<br>yankılanacağı bir yer de var.</h2><p>İletişim, Çankaya Üniversitesinin tüm fakülte ve bölümlerinden öğrencilere açık. Daha önce yayımlanmış bir yazının olması gerekmez; fikrini getir, birlikte geliştirelim.</p><a class="button button--dark" href="yazar-ol.html">Fikrini Bize Gönder ↗</a></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid"><div><div class="footer-brand">İLET“İŞ”İM</div><p>Sözle başlar, ruhla yankılanır.</p></div><div><p class="eyebrow">İletişim</p><p><a href="mailto:ilet.is.imdergisi24@gmail.com">ilet.is.imdergisi24@gmail.com</a><br><a href="https://www.instagram.com/cu.iletisimtoplulugu/" target="_blank" rel="noreferrer">@cu.iletisimtoplulugu</a></p></div><div class="footer-links"><a href="son-sayi.html">Son Sayı</a><a href="sayilar.html">Sayılar</a><a href="yazilar.html">Yazılar</a><a href="koseler.html">Köşeler</a><a href="yazar-ol.html">Yazar Ol</a><a href="hakkimizda.html">Hakkımızda</a></div></div>
+      <div class="copyright"><span>© 2026 İletişim Dergisi</span><span>Öğrenci sözü · Ortak hafıza</span></div>
+    </footer>
+  </div>
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const nav = document.querySelector('#site-nav');
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    nav.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  </script>
+</body>
+</html>
